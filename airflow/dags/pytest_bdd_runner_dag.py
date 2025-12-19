@@ -28,7 +28,7 @@ from airflow.operators.bash import BashOperator
 
 # Path inside the Airflow container where the repo is mounted.
 REPO_DIR = os.environ.get("REPO_DIR", "/opt/airflow/repo")
-PROJECT_DIR = os.path.join(REPO_DIR, "pytest_bdd")
+PROJECT_DIR = os.path.join(REPO_DIR, "pytest_bdd_demo")
 
 with DAG(
     dag_id="run_pytest_bdd",
@@ -41,8 +41,8 @@ with DAG(
         task_id="pytest_bdd",
         env={
             "PROJECT_DIR": PROJECT_DIR,
-            # Ensure the repo code is importable (calculator.py lives in PROJECT_DIR)
-            "PYTHONPATH": PROJECT_DIR,
+            # Ensure the repo code is importable (pytest_bdd_demo is a package under REPO_DIR)
+            "PYTHONPATH": REPO_DIR,
         },
         bash_command=(
             "set -euo pipefail; "

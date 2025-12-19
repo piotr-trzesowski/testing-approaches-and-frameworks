@@ -21,7 +21,6 @@ FROM apache/airflow:2.8.1
 USER airflow
 
 # Only copy the requirements to keep Docker layers cache-friendly.
-COPY pytest_bdd/requirements-dev.txt /tmp/requirements-dev.txt
+COPY pytest_bdd/requirements.txt /tmp/requirements.txt
 
-RUN pip install --no-cache-dir -r /tmp/requirements-dev.txt
-
+RUN pip install --no-cache-dir -r /tmp/requirements.txt

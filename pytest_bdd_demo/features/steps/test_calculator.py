@@ -1,6 +1,8 @@
-from pytest_bdd import scenarios, given, when, then, parsers
-from calculator import Calculator
 import logging
+
+from pytest_bdd import scenarios, given, when, then, parsers
+
+from app.calculator import Calculator
 
 scenarios('calculator.feature')
 logger = logging.getLogger(__name__)
