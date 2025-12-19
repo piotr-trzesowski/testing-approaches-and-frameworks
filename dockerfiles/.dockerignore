@@ -1,0 +1,11 @@
+# Keep the build context small and avoid copying local env/IDE caches.
+.venv/
+.idea/
+.git/
+**/__pycache__/
+**/.pytest_cache/
+**/*.pyc
+**/*.pyo
+**/*.pyd
+.DS_Store
+

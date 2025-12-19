@@ -1,0 +1,11 @@
+# Keep Docker build context small and reproducible
+.venv/
+.idea/
+.git/
+**/__pycache__/
+**/.pytest_cache/
+**/*.pyc
+**/*.pyo
+**/*.pyd
+.DS_Store
+

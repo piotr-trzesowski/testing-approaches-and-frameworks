@@ -1,0 +1,27 @@
+# syntax=docker/dockerfile:1
+
+# Airflow image for running this repo's pytest-bdd suite via a DAG.
+#
+# Build (from repo root):
+#   docker build -f dockerfiles/Dockerfile.airflow -t local-airflow-pytest-bdd .
+#
+# Run (standalone):
+#   docker run --rm -it -p 8080:8080 \
+#     -e AIRFLOW__CORE__LOAD_EXAMPLES=False \
+#     -e REPO_DIR=/opt/airflow/repo \
+#     -v "$(pwd):/opt/airflow/repo" \
+#     -v "$(pwd)/airflow/dags:/opt/airflow/dags" \
+#     local-airflow-pytest-bdd standalone
+#
+# (The DAG can then run pytest inside /opt/airflow/repo/pytest_bdd.)
+
+FROM apache/airflow:2.8.1
+
+# Install Python deps as the airflow user (recommended by the image).
+USER airflow
+
+# Only copy the requirements to keep Docker layers cache-friendly.
+COPY pytest_bdd/requirements-dev.txt /tmp/requirements-dev.txt
+
+RUN pip install --no-cache-dir -r /tmp/requirements-dev.txt
+
