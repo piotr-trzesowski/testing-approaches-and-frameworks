@@ -8,3 +8,5 @@ Scenarios: Concrete examples of behavior
 Fixtures: pytest fixtures (like the calculator in this example) can be used
 
 This repo includes an Airflow DAG at `airflow/dags/pytest_bdd_runner_dag.py` that executes `pytest` for `pytest_bdd_demo/` and shows the output in Airflow task logs.
+
+To run  it execute: docker run --rm -t -v "$(pwd):/repo" local-airflow-pytest-bdd bash -lc "cd /repo/pytest_bdd_demo && pytest -q" | cat
