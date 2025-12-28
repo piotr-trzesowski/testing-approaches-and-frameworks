@@ -1,0 +1,12 @@
+# Optional UI extras for Airflow 3.x
+#
+# Airflow can run without these, but provider UI widgets may log warnings if missing.
+#
+# IMPORTANT:
+# Airflow 3.0.6 depends on SQLAlchemy < 2.0, so we must ensure any UI extras do not
+# upgrade SQLAlchemy to 2.x.
+
+flask-appbuilder
+wtforms
+sqlalchemy[asyncio]<2.0,>=1.4.49
+bcrypt
